@@ -9,11 +9,13 @@ def move(x,y,theta,v,dt):
 
 fig, ax = plt.subplots()
 ax = plt.axis([0,8,-4,4])
-redDot, = plt.plot([], [], 'ro')
+redDot, = plt.plot([], [], 'ko')
 label = plt.xlabel("a")
 plt.gca().set_aspect('equal', adjustable='box')
+fig.set_size_inches(6, 6, True)
 
 dt = .010
+dt_range = [0.01,0.05]
 v = 1
 t_tot = 10
 theta = np.pi/2
@@ -39,7 +41,7 @@ def animate(step):
 # create animation using the animate() function
 anim = animation.FuncAnimation(fig, animate, frames=range(int(steps)),
                                       interval=1, blit=True, repeat=True)
-FFwriter = animation.FFMpegWriter(fps=50)
+FFwriter = animation.FFMpegWriter(fps=100)
 
 # Set up formatting for the movie files
-anim.save('animation.mp4', writer=FFwriter)
+anim.save('animation.mp4', writer=FFwriter,dpi=400)
